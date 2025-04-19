@@ -1,0 +1,32 @@
+ALGORITHM read_sentence
+VAR
+    ch : CHAR;
+    length, word_count, vowel_count : INTEGER;
+    vowels : SET OF CHAR := {'a','e','i','o','u','A','E','I','O','U'};
+BEGIN
+    length := 0;
+    word_count := 1;       // We start with 1 assuming there's at least one word before the first space
+    vowel_count := 0;
+
+    OUTPUT "Enter a sentence character by character (end with a period):"
+
+    REPEAT
+        INPUT ch;
+        length := length + 1;
+
+        // Check if the character is a vowel
+        IF ch IN vowels THEN
+            vowel_count := vowel_count + 1;
+        END_IF
+
+        // Count spaces to determine word count
+        IF ch = ' ' THEN
+            word_count := word_count + 1;
+        END_IF
+
+    UNTIL ch = '.'
+
+    OUTPUT "Length of sentence: ", length;
+    OUTPUT "Number of words: ", word_count;
+    OUTPUT "Number of vowels: ", vowel_count;
+END
